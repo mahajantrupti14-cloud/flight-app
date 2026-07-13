@@ -1,0 +1,133 @@
+table sales_df
+	lineageTag: 9a52e366-2269-45a0-b9a1-804af07fec45
+
+	measure 'Total Companies' = ```
+			DISTINCTCOUNT(stock_df[company])
+			
+			
+			
+			```
+		formatString: 0
+		lineageTag: 0413dccc-2da5-49fc-ba71-12f3e97742f8
+
+	measure 'Total Records' = ```
+			COUNTROWS(stock_df)
+			
+			```
+		formatString: 0
+		lineageTag: 1d69106b-030c-4491-8805-b67af406173d
+
+	measure 'Average Volume' = ```
+			AVERAGE(stock_df[trading_volume]) 
+			```
+		lineageTag: a957fe45-2794-4a55-b00a-8ed421fbd4ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Companies1' = ```
+			DISTINCTCOUNT(stock_df[company])
+			
+			```
+		formatString: 0
+		lineageTag: 0dd05244-db5e-41b1-a6fc-7b0f46446f60
+
+	measure 'Total Records2' = ```
+			COUNTROWS(stock_df)
+			
+			```
+		formatString: 0
+		lineageTag: d206920a-3c63-465c-ae37-73e53b9a8d70
+
+	measure 'Highest Price' = ```
+			MAX(stock_df[high_price])
+			
+			```
+		lineageTag: 846f6fcd-2891-46fc-b3eb-daa82cced522
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lowest Price' = ```
+			MIN(stock_df[low_price])
+			
+			```
+		lineageTag: 1023c9ab-7680-41ac-acd9-fe7255a813aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Volume1' = ```
+			AVERAGE(stock_df[trading_volume])
+			
+			```
+		lineageTag: 425f7375-1a78-45da-a107-28afbf96544c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sale_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3df5e041-9fd3-4898-8e67-b3a8a14d5dda
+		summarizeBy: none
+		sourceColumn: sale_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 57fbbe60-4fd2-4b9d-9383-1f8ce32178e0
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 9d50d258-560a-4c39-aa3c-bca3b5216d40
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: int64
+		formatString: 0
+		lineageTag: d94879e1-d2a7-4ed0-8fde-94036186fdd8
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column sale_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3c62be0e-2908-4bec-8ccd-160e5a17fd54
+		summarizeBy: none
+		sourceColumn: sale_date
+
+		variation Variation
+			isDefault
+			relationship: cb6c5322-c787-4995-aec6-d5724fd8264c
+			defaultHierarchy: LocalDateTable_72a761e0-2aa9-401f-975b-ee92bffb52ee.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	hierarchy 'sale_date Hierarchy'
+		lineageTag: 6e0d60d4-c034-44c5-89b9-5aa9ab2c5a5c
+
+		level sale_date
+			lineageTag: f48c9b60-2091-427b-af4d-377d044a18b5
+			column: sale_date
+
+	partition sales_df = m
+		mode: import
+		source =
+				let
+				    Source = Python.Execute("import pandas as pd#(lf)import sqlite3#(lf)#(lf)conn = sqlite3.connect(""C:/Users/Trupti/OneDrive/Desktop/stock market Analysis/stock_data.db"")#(lf)stock_df = pd.read_sql(""SELECT * FROM stock_prices"", conn)#(lf)sales_df = pd.read_sql(""SELECT * FROM sales"", conn)#(lf)conn.close()#(lf)"),
+				    sales_df1 = Source{[Name="sales_df"]}[Value],
+				    #"Changed Type" = Table.TransformColumnTypes(sales_df1,{{"sale_id", Int64.Type}, {"product_name", type text}, {"category", type text}, {"revenue", Int64.Type}, {"sale_date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

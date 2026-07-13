@@ -1,0 +1,86 @@
+table stock_df
+	lineageTag: 9469e823-a825-4e1d-95c2-dcd6bd6b4dc9
+
+	column company
+		dataType: string
+		lineageTag: dda9f957-b30c-4ae0-a3a8-65eeb4988fd8
+		summarizeBy: none
+		sourceColumn: company
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2094903d-f979-4c63-9196-d51408a9ce21
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 84af2985-b681-4620-8911-fca99e40c6f3
+			defaultHierarchy: LocalDateTable_1fdf55b9-6b5a-421f-84c9-5f310526fc8e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column open_price
+		dataType: double
+		lineageTag: b113c208-23ed-47d8-a6a8-3150c1bde9d9
+		summarizeBy: sum
+		sourceColumn: open_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column high_price
+		dataType: double
+		lineageTag: 5107c64d-7ea9-4dd0-af98-e3782e91a9f4
+		summarizeBy: sum
+		sourceColumn: high_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column low_price
+		dataType: double
+		lineageTag: 62abc369-585a-48fb-8a13-2b52a24b9553
+		summarizeBy: sum
+		sourceColumn: low_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column close_price
+		dataType: double
+		lineageTag: 6b650767-3544-444d-836a-349b07d3ea38
+		summarizeBy: sum
+		sourceColumn: close_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column trading_volume
+		dataType: int64
+		formatString: 0
+		lineageTag: 06f6d7eb-1fdb-47a2-908e-8ae6e5c17f3f
+		summarizeBy: sum
+		sourceColumn: trading_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	partition stock_df = m
+		mode: import
+		source =
+				let
+				    Source = Python.Execute("import pandas as pd#(lf)import sqlite3#(lf)#(lf)conn = sqlite3.connect(""C:/Users/Trupti/OneDrive/Desktop/stock market Analysis/stock_data.db"")#(lf)stock_df = pd.read_sql(""SELECT * FROM stock_prices"", conn)#(lf)sales_df = pd.read_sql(""SELECT * FROM sales"", conn)#(lf)conn.close()#(lf)"),
+				    stock_df1 = Source{[Name="stock_df"]}[Value],
+				    #"Changed Type" = Table.TransformColumnTypes(stock_df1,{{"company", type text}, {"date", type datetime}, {"open_price", type number}, {"high_price", type number}, {"low_price", type number}, {"close_price", type number}, {"trading_volume", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

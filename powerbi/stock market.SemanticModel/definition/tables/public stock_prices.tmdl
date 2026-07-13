@@ -1,0 +1,83 @@
+table 'public stock_prices'
+	lineageTag: f3fb73a2-7039-4edb-b52f-4db3b82137be
+
+	column company
+		dataType: string
+		lineageTag: a15c9d9d-f9ed-44a1-90b2-9b7429b75374
+		summarizeBy: none
+		sourceColumn: company
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cdaa152a-8486-4d4b-81dc-31e5fc6c1866
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 49133607-515f-45bd-a8dd-32f9cc76fedb
+			defaultHierarchy: LocalDateTable_89ec4432-5ca9-4797-a022-9b13d236a239.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column open_price
+		dataType: double
+		lineageTag: 2051b36d-9a2c-44e0-808e-631690361a99
+		summarizeBy: sum
+		sourceColumn: open_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column high_price
+		dataType: double
+		lineageTag: 95e1191a-3bcf-49c0-a712-920085cda01d
+		summarizeBy: sum
+		sourceColumn: high_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column low_price
+		dataType: double
+		lineageTag: 496b1314-61fc-4427-89f4-881d9492e0a3
+		summarizeBy: sum
+		sourceColumn: low_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column close_price
+		dataType: double
+		lineageTag: ab219940-6b84-4883-9ab4-4c3523a5c815
+		summarizeBy: sum
+		sourceColumn: close_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column trading_volume
+		dataType: int64
+		formatString: 0
+		lineageTag: aae5cac9-8806-45de-bcb5-c7c2e2b27ed5
+		summarizeBy: sum
+		sourceColumn: trading_volume
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public stock_prices' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost: 5432", "postgres"),
+				    public_stock_prices = Source{[Schema="public",Item="stock_prices"]}[Data]
+				in
+				    public_stock_prices
+

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "748a8f5365af2c1e0a23",
+  "position": {
+    "x": 1023.5108669691904,
+    "y": 44.0219727728684,
+    "z": 10,
+    "height": 134.51158347265346,
+    "width": 237.22951994267973,
+    "tabOrder": 10
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "sales_df"
+                    }
+                  },
+                  "Property": "Average Volume"
+                }
+              },
+              "queryRef": "sales_df.Average Volume",
+              "nativeQueryRef": "Average Volume"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "sales_df"
+                  }
+                },
+                "Property": "Average Volume"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dca1ae59f08dbf03efbb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "sales_df"
+              }
+            },
+            "Property": "Average Volume"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "stock market"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "834a327d-d4e5-4ee3-904a-10e4e51dd91d"
+  }
+}

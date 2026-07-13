@@ -1,0 +1,81 @@
+table 'public sales'
+	lineageTag: 4d8c1eda-1c4c-4bc3-b6c0-a9b331f8e929
+
+	column sale_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 04919c34-c95a-462a-8177-aa9e71a5de9e
+		summarizeBy: none
+		sourceColumn: sale_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f7ba5508-d488-4a14-abf1-a9a26f53fa71
+		summarizeBy: sum
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: a87874cd-adce-4243-8e28-6b2970d46af2
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 7f683c30-0b47-4797-960b-8c6717f99569
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column sale_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8ca4a248-8c9b-493e-80f0-f4049e5d1a83
+		summarizeBy: none
+		sourceColumn: sale_date
+
+		variation Variation
+			isDefault
+			relationship: 9fbef5ac-09d9-4f18-ad28-8c6396f23bec
+			defaultHierarchy: LocalDateTable_2a3b3818-2c80-48f0-8aca-f815c5992596.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 4358edd1-d9b8-4e2a-baf2-993f552c4469
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: double
+		lineageTag: 16a464c0-0693-4035-951f-5d76b93cf3ad
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public sales' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost: 5432", "postgres"),
+				    public_sales = Source{[Schema="public",Item="sales"]}[Data]
+				in
+				    public_sales
+

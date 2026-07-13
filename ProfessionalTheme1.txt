@@ -1,0 +1,23 @@
+{
+  "name": "Dashboard Professional",
+  "dataColors": ["#1F4E79", "#ED7D31", "#70AD47", "#FFC000", "#4472C4", "#A5A5A5"],
+  "background": "#F2F2F2",
+  "foreground": "#1F4E79",
+  "tableAccent": "#ED7D31",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [{ "show": true, "color": "#D9D9D9" }],
+        "titleText": [{ "color": "#1F4E79", "fontSize": 13, "fontFamily": "Segoe UI Semibold" }],
+        "labels": [{ "color": "#333333", "fontSize": 11 }],
+        "plotArea": [{ "background": "#FFFFFF" }]
+      }
+    },
+    "card": {
+      "*": {
+        "titleText": [{ "color": "#666666", "fontSize": 11 }],
+        "labels": [{ "color": "#1F4E79", "fontSize": 14, "fontFamily": "Segoe UI Bold" }]
+      }
+    }
+  }
+}

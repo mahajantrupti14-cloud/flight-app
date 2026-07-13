@@ -1,0 +1,14 @@
+{
+  "name": "Corporate Professional",
+  "dataColors": [
+    "#1F4E79",  // Dark Blue - Primary
+    "#ED7D31",  // Orange - Accent
+    "#70AD47",  // Green - Accent
+    "#FFC000",  // Yellow - Highlight
+    "#4472C4",  // Medium Blue
+    "#A5A5A5"   // Gray - Neutral
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1F4E79",
+  "tableAccent": "#ED7D31"
+}

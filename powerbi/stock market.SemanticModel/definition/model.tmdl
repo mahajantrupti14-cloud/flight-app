@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["sales_df","stock_df","public sales","public stock_prices"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table sales_df
+ref table DateTableTemplate_4dec85ff-798a-4ee3-a9a3-0fa6e17d82c2
+ref table LocalDateTable_72a761e0-2aa9-401f-975b-ee92bffb52ee
+ref table stock_df
+ref table LocalDateTable_1fdf55b9-6b5a-421f-84c9-5f310526fc8e
+ref table 'public sales'
+ref table LocalDateTable_2a3b3818-2c80-48f0-8aca-f815c5992596
+ref table 'public stock_prices'
+ref table LocalDateTable_89ec4432-5ca9-4797-a022-9b13d236a239
+
+ref cultureInfo en-US
+

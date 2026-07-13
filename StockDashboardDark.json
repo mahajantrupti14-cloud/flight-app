@@ -1,0 +1,39 @@
+{
+  "name": "Stock Dashboard Dark",
+  "dataColors": ["#4FC3F7", "#FF7043", "#81C784", "#FFD54F", "#BA68C8", "#E0E0E0"],
+  "background": "#1E1E1E",
+  "foreground": "#FFFFFF",
+  "tableAccent": "#4FC3F7",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [{ "show": true, "color": "#333333" }],
+        "titleText": [{ "color": "#FFFFFF", "fontSize": 13, "fontFamily": "Segoe UI Semibold" }],
+        "labels": [{ "color": "#E0E0E0", "fontSize": 11 }],
+        "plotArea": [{ "background": "#2C2C2C" }]
+      }
+    },
+    "card": {
+      "*": {
+        "titleText": [{ "color": "#B0BEC5", "fontSize": 11 }],
+        "labels": [{ "color": "#4FC3F7", "fontSize": 15, "fontFamily": "Segoe UI Bold" }]
+      }
+    },
+    "pieChart": {
+      "*": {
+        "labels": [{ "color": "#FFFFFF", "fontSize": 11 }]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "series": [{ "color": "#4FC3F7", "showMarker": true }]
+      }
+    },
+    "barChart": {
+      "*": {
+        "dataPoint": [{ "color": "#FF7043" }],
+        "labels": [{ "color": "#FFFFFF", "fontSize": 11 }]
+      }
+    }
+  }
+}

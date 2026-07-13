@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "6286d28a83f072c56871",
+  "position": {
+    "x": 743.167430291923,
+    "y": 43.431862809268225,
+    "z": 9,
+    "height": 135.12135096216781,
+    "width": 279.89422699306192,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "sales_df"
+                    }
+                  },
+                  "Property": "Lowest Price"
+                }
+              },
+              "queryRef": "sales_df.Lowest Price",
+              "nativeQueryRef": "Lowest Price"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "sales_df"
+                  }
+                },
+                "Property": "Lowest Price"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "160c18eb89e5b3bc3ed2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "sales_df"
+              }
+            },
+            "Property": "Lowest Price"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

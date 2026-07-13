@@ -1,0 +1,26 @@
+relationship cb6c5322-c787-4995-aec6-d5724fd8264c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: sales_df.sale_date
+	toColumn: LocalDateTable_72a761e0-2aa9-401f-975b-ee92bffb52ee.Date
+
+relationship 84af2985-b681-4620-8911-fca99e40c6f3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: stock_df.date
+	toColumn: LocalDateTable_1fdf55b9-6b5a-421f-84c9-5f310526fc8e.Date
+
+relationship 9fbef5ac-09d9-4f18-ad28-8c6396f23bec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public sales'.sale_date
+	toColumn: LocalDateTable_2a3b3818-2c80-48f0-8aca-f815c5992596.Date
+
+relationship 49133607-515f-45bd-a8dd-32f9cc76fedb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public stock_prices'.date
+	toColumn: LocalDateTable_89ec4432-5ca9-4797-a022-9b13d236a239.Date
+
+relationship AutoDetected_531a22c1-a387-4f96-af33-a5b84b6b3c4c
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: sales_df.sale_id
+	toColumn: 'public sales'.sale_id
+
